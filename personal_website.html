@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Prokoudine</title>
+
+<style>
+
+:root{
+--bg:#f0d88b;
+--text:#2b2b2b;
+--muted:#6b5e53;
+--accent:#8c5a3c;
+--card:#ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+line-height:1.7;
+overflow-x: hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+height: 70px; /* Explicit height for calculations */
+background:rgba(255,253,248,.95);
+backdrop-filter:blur(6px);
+padding:0 2rem;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #e6d8c9;
+z-index:1000;
+}
+
+header h1{
+font-size:1rem;
+font-weight:600;
+}
+
+nav a{
+margin-left:1.5rem;
+text-decoration:none;
+color:var(--muted);
+font-size:.9rem;
+transition:.2s;
+}
+
+nav a:hover{
+color:var(--accent);
+}
+
+/* HERO */
+
+/* HERO */
+
+.hero {
+  margin-top: 70px;
+  background: var(--bg);
+  height: calc(100vh - 70px); /* 100% viewport height minus navbar */
+  width: 100%;
+  overflow: hidden; /* <--- THIS IS THE MAGIC FIX */
+}
+
+.hero-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%; /* Forces the grid to respect the exact height */
+  gap: 0; 
+}
+
+.hero-left {
+  height: 100%;
+  min-height: 0; /* Tells CSS it's okay to shrink this container */
+}
+
+.hero-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  display: block;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* Tells CSS it's okay to shrink this container */
+}
+
+.hero-right img {
+  width: 100%;
+  height: 50%;
+  min-height: 0; /* Prevents the flexbox from stretching */
+  object-fit: cover; 
+  display: block;
+}
+.hero-title{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:16px 32px;
+font-size:2.3rem;
+color:#555;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+z-index: 10;
+text-align: center;
+}
+
+.hero-wrapper{
+position:relative;
+}
+
+/* SECTIONS */
+
+section.content-section{
+padding:80px 20px;
+max-width:1000px;
+margin:60px auto;
+background:white;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+display:flex;
+align-items:center;
+gap:2rem;
+}
+
+section.content-section:nth-child(even){
+flex-direction:row-reverse;
+}
+
+section.content-section img{
+width:45%;
+height:auto;
+border-radius:16px;
+}
+
+.section-text{
+width:55%;
+}
+
+h3{
+font-size:1.6rem;
+margin-bottom:1rem;
+}
+
+p{
+color:var(--muted);
+margin-bottom:1rem;
+}
+
+ul{
+margin-left:1.2rem;
+color:var(--muted);
+}
+
+/* PROJECTS */
+
+.projects-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:1.5rem;
+margin-top:1.5rem;
+}
+
+.card{
+background:white;
+padding:1.5rem;
+border-radius:24px;
+text-decoration:none;
+color:var(--text);
+border:1px solid #e6d8c9;
+transition:.25s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+border-color:var(--accent);
+}
+
+/* CONTACT */
+
+.contact-button{
+display:inline-block;
+margin-top:1.5rem;
+padding:.9rem 1.8rem;
+background:var(--accent);
+color:white;
+text-decoration:none;
+border-radius:999px;
+font-weight:500;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:2rem;
+color:var(--muted);
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+.hero-grid{
+grid-template-columns:1fr;
+grid-template-rows: 50% 50%; /* Splits height evenly for mobile */
+}
+
+.hero-right {
+flex-direction: row; /* Places smaller images side-by-side on mobile */
+}
+
+.hero-right img {
+width: 50%;
+height: 100%;
+}
+
+section.content-section{
+flex-direction:column;
+}
+
+section.content-section img,
+.section-text{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Michael Prokoudine</h1>
+
+<nav>
+<a href="#about">About</a>
+<a href="#achievements">Achievements</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+
+<div class="hero-wrapper">
+
+<section class="hero">
+
+<div class="hero-grid">
+
+<div class="hero-left">
+<img src="https://picsum.photos/1200/800" alt="Hero image 1">
+</div>
+
+<div class="hero-right">
+<img src="https://picsum.photos/600/600" alt="Hero image 2">
+<img src="https://picsum.photos/601/600" alt="Hero image 3">
+</div>
+
+</div>
+
+</section>
+
+<div class="hero-title">
+Michael Prokoudine
+</div>
+
+</div>
+
+
+<section id="about" class="content-section">
+
+<img src="https://picsum.photos/500/400" alt="About me">
+
+<div class="section-text">
+
+<h3>About Me</h3>
+
+<p>I'm <span id="age"></span> years old and based in Toronto, Canada. I love engineering, robotics, and creating software solutions.</p>
+<p>When I'm not building projects, I explore ideas for improving systems and constantly learn new skills.</p>
+
+</div>
+
+</section>
+
+
+<section id="achievements" class="content-section">
+
+<img src="https://picsum.photos/501/400" alt="Achievements">
+
+<div class="section-text">
+
+<h3>Achievements & Involvement</h3>
+
+<ul>
+<li>Academic awards</li>
+<li>Extra-curricular activities</li>
+<li>Volunteer experience</li>
+<li>Leadership roles</li>
+</ul>
+
+</div>
+
+</section>
+
+
+<section id="projects" class="content-section">
+
+<img src="https://picsum.photos/502/400" alt="Projects">
+
+<div class="section-text">
+
+<h3>Projects</h3>
+
+<div class="projects-grid">
+
+<a href="#" class="card">
+<h4>Transit Concepts</h4>
+<p>Transportation planning and infrastructure design ideas.</p>
+</a>
+
+<a href="#" class="card">
+<h4>Robotics</h4>
+<p>Hardware builds using sensors and microcontrollers.</p>
+</a>
+
+<a href="#" class="card">
+<h4>Software</h4>
+<p>Apps and programming tools.</p>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="contact" class="content-section">
+
+<div class="section-text">
+
+<h3>Contact</h3>
+
+<p>If you'd like to get in touch, feel free to email me.</p>
+
+<a href="mailto:your.email@example.com" class="contact-button">
+Contact Me
+</a>
+
+</div>
+
+</section>
+
+
+<footer>
+© 2026 Michael Prokoudine
+</footer>
+<script>
+  // Replace with your actual birth date
+  const birthDate = "2011-01-31"; // YYYY-MM-DD
+
+  function calculateAge(dateString) {
+      const today = new Date();
+      const birth = new Date(dateString);
+      let age = today.getFullYear() - birth.getFullYear();
+      const monthDiff = today.getMonth() - birth.getMonth();
+      const dayDiff = today.getDate() - birth.getDate();
+      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+          age--;
+      }
+      return age;
+  }
+
+  document.getElementById("age").textContent = calculateAge(birthDate);
+</script>
+</body>
+</html>

@@ -247,6 +247,27 @@ width:100%;
 
 }
 
+  .quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+blockquote {
+  background: white;
+  padding: 18px 22px;
+  border-left: 5px solid #2b2b2b;
+  font-style: italic;
+  border-radius: 8px;
+}
+
+.author {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-weight: 600;
+}
+
 </style>
 </head>
 
@@ -324,6 +345,36 @@ Michael Prokoudine
 
 </section>
 
+<section id="quotes" class="content-section">
+
+<img src="https://picsum.photos/501/400" alt="Quotes">
+
+<div class="section-text">
+
+<h3>Quotes</h3>
+
+<div class="quotes">
+
+  <blockquote>
+    Speed has never killed anyone. Suddenly becoming stationary, that's what gets you.
+    <span class="author">— Jeremy Clarkson</span>
+  </blockquote>
+
+  <blockquote>
+    If you want to become an engineer, become a military engineer. It's more fun to blow up bridges than to build them.
+    <span class="author">— Dr. Curk</span>
+  </blockquote>
+
+  <blockquote>
+    If you're early—you're on time. If you're on time—you're late. If you're late—you're dead.
+    <span class="author">— 2Lt Percyrobb</span>
+  </blockquote>
+
+</div>
+
+</div>
+
+</section>
 
 <section id="projects" class="content-section">
 
@@ -397,5 +448,6 @@ Contact Me
 </script>
 </body>
 </html>
+
 
 

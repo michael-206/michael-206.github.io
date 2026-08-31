@@ -1,502 +1,412 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Michael Prokoudine</title>
-
-<style>
-
-:root{
---bg:#eee7d7;
---text:#2b2b2b;
---muted:#6b5e53;
---accent:#8c5a3c;
---card:#ffffff;
-}
-
-.more-projects{
-    margin-top:2rem;
-    text-align:center;
-}
-
-.more-projects p{
-    margin-bottom:1rem;
-}
-  
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:var(--bg);
-color:var(--text);
-line-height:1.7;
-overflow-x: hidden;
-}
-
-/* HEADER */
-
-header{
-position:fixed;
-top:0;
-width:100%;
-height: 70px; /* Explicit height for calculations */
-background:rgba(255,253,248,.95);
-backdrop-filter:blur(6px);
-padding:0 2rem;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid #e6d8c9;
-z-index:1000;
-}
-
-header h1{
-font-size:1rem;
-font-weight:600;
-}
-
-nav a{
-margin-left:1.5rem;
-text-decoration:none;
-color:var(--muted);
-font-size:.9rem;
-transition:.2s;
-}
-
-nav a:hover{
-color:var(--accent);
-}
-
-/* HERO */
-
-/* HERO */
-
-.hero {
-  margin-top: 70px;
-  background: var(--bg);
-  height: calc(100vh - 70px); /* 100% viewport height minus navbar */
-  width: 100%;
-  overflow: hidden; /* <--- THIS IS THE MAGIC FIX */
-}
-
-.hero-grid {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 100%; /* Forces the grid to respect the exact height */
-  gap: 0; 
-}
-
-.hero-left {
-  height: 100%;
-  min-height: 0; /* Tells CSS it's okay to shrink this container */
-}
-
-.hero-left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-  display: block;
-}
-
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0; /* Tells CSS it's okay to shrink this container */
-}
-
-.hero-right img {
-  width: 100%;
-  height: 50%;
-  min-height: 0; /* Prevents the flexbox from stretching */
-  object-fit: cover; 
-  display: block;
-}
-.hero-title{
-position:absolute;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:16px 32px;
-font-size:2.3rem;
-color:#555;
-box-shadow:0 10px 25px rgba(0,0,0,.15);
-z-index: 10;
-text-align: center;
-}
-
-.hero-wrapper{
-position:relative;
-}
-
-/* SECTIONS */
-
-section.content-section{
-padding:80px 20px;
-max-width:1000px;
-margin:60px auto;
-background:white;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.1);
-display:flex;
-align-items:center;
-gap:2rem;
-}
-
-section.content-section:nth-child(even){
-flex-direction:row-reverse;
-}
-
-section.content-section img{
-width:45%;
-height:auto;
-border-radius:16px;
-}
-
-.section-text{
-width:55%;
-}
-
-h3{
-font-size:1.6rem;
-margin-bottom:1rem;
-}
-
-p{
-color:var(--muted);
-margin-bottom:1rem;
-}
-
-ul{
-margin-left:1.2rem;
-color:var(--muted);
-}
-
-/* PROJECTS */
-
-.projects-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:1.5rem;
-margin-top:1.5rem;
-}
-
-.card{
-background:white;
-padding:1.5rem;
-border-radius:24px;
-text-decoration:none;
-color:var(--text);
-border:1px solid #e6d8c9;
-transition:.25s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 30px rgba(0,0,0,.1);
-border-color:var(--accent);
-}
-
-/* CONTACT */
-
-.contact-button{
-display:inline-block;
-margin-top:1.5rem;
-padding:.9rem 1.8rem;
-background:var(--accent);
-color:white;
-text-decoration:none;
-border-radius:999px;
-font-weight:500;
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:2rem;
-color:var(--muted);
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-.hero-grid{
-grid-template-columns:1fr;
-grid-template-rows: 50% 50%; /* Splits height evenly for mobile */
-}
-
-.hero-right {
-flex-direction: row; /* Places smaller images side-by-side on mobile */
-}
-
-.hero-right img {
-width: 50%;
-height: 100%;
-}
-
-section.content-section{
-flex-direction:column;
-}
-
-section.content-section img,
-.section-text{
-width:100%;
-}
-
-}
-
-  .quotes {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-blockquote {
-  background: white;
-  padding: 18px 22px;
-  border-left: 5px solid #2b2b2b;
-  font-style: italic;
-  border-radius: 8px;
-}
-
-.author {
-  display: block;
-  margin-top: 10px;
-  font-style: normal;
-  font-weight: 600;
-}
-
-</style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6075232634095661"
-     crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Michael Prokoudine — software, engineering, robotics, and creative projects.">
+  <title>Michael Prokoudine</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<header>
-<h1>Michael Prokoudine</h1>
+<header class="navbar">
+  <div class="nav-inner">
+    <a class="brand" href="#home">Michael Prokoudine</a>
 
-<nav>
-<a href="#about">About</a>
-<a href="#achievements">Achievements</a>
-<!--<a href="#quotes">Quotes</a>-->
-<a href="#projects">Projects</a>
-<a href="#contact">Contact</a>
-</nav>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="menu" aria-label="Open navigation">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-nav">
+    <a href="#about">About</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
 </header>
 
 
-<div class="hero-wrapper">
+<main id="home">
 
-<section class="hero">
+  <!-- HERO -->
+  <section class="hero">
 
-<div class="hero-grid">
+    <div class="hero-images">
 
-<div class="hero-left">
-<img src="https://picsum.photos/1200/600" alt="Hero image 1">
-</div>
+      <div class="hero-pic side">
+        <img src="images/hero-1.jpg" alt="Hero image 1">
+        <div class="ph">
+          <b>YOUR PHOTO</b>
+          <small>hero-1.jpg</small>
+        </div>
+      </div>
 
-<div class="hero-right">
-<img src="https://picsum.photos/600/600" alt="Hero image 2">
-<img src="https://picsum.photos/601/600" alt="Hero image 3">
-</div>
+      <div class="hero-pic main">
+        <img src="images/hero-2.jpg" alt="Hero image 2">
+        <div class="ph">
+          <b>YOUR PHOTO</b>
+          <small>hero-2.jpg</small>
+        </div>
+      </div>
 
-</div>
+      <div class="hero-pic side">
+        <img src="images/hero-3.jpg" alt="Hero image 3">
+        <div class="ph">
+          <b>YOUR PHOTO</b>
+          <small>hero-3.jpg</small>
+        </div>
+      </div>
 
-</section>
+    </div>
 
-<div class="hero-title">
-Michael Prokoudine
-</div>
+    <div class="hero-copy">
+      <p class="label">Toronto, Canada</p>
 
-</div>
+      <h1>Michael Prokoudine</h1>
 
+      <p>
+        I build software, explore engineering, and turn interesting
+        ideas into things that actually work.
+      </p>
 
-<section id="about" class="content-section">
+      <div class="actions">
+        <a class="btn dark" href="#projects">
+          View my projects ↓
+        </a>
 
-<img src="https://picsum.photos/500/400" alt="About me">
+        <a class="btn" href="#contact">
+          Get in touch
+        </a>
+      </div>
+    </div>
 
-<div class="section-text">
-
-<h3>About Me</h3>
-
-<p>I'm <span id="age"></span> years old and based in Toronto, Canada. I love engineering, robotics, infrastructure and Coding.</p>
-<p>When I'm not building projects, I explore ideas for improving systems and constantly learn new skills.</p>
-
-</div>
-
-</section>
-
-
-<section id="achievements" class="content-section">
-
-<img src="https://picsum.photos/501/400" alt="Achievements">
-
-<div class="section-text">
-
-<h3>Achievements & Involvement</h3>
-
-<ul>
-<li>Compete regularly in triathlons</li>
-<li>Extra-curricular activities</li>
-<li>Volunteer weekly</li>
-</ul>
-
-</div>
-
-</section>
-
-<!--<section id="quotes" class="content-section">
-
-<img src="https://picsum.photos/501/400" alt="Quotes">
-
-<div class="section-text">
-
-<h3>Quotes</h3>
-
-<div class="quotes">
-
-  <blockquote>
-    Speed has never killed anyone. Suddenly becoming stationary, that's what gets you.
-    <span class="author">— Jeremy Clarkson</span>
-  </blockquote>
-
-  <blockquote>
-    If you want to become an engineer, become a military engineer. It's more fun to blow up bridges than to build them.
-    <span class="author">— Dr. Curk</span>
-  </blockquote>
+  </section>
 
 
+  <!-- ABOUT -->
+  <section id="about" class="section">
 
-</div>
+    <div class="section-grid">
 
-</div>
+      <div>
+        <span class="index">01</span>
+        <h2>About Me</h2>
+      </div>
 
-</section>-->
+      <div class="copy">
 
-<section id="projects" class="content-section">
+        <p class="lead">
+          I'm Michael, a Toronto-based student who likes building things
+          and figuring out how they work.
+        </p>
 
-<img src="https://picsum.photos/502/400" alt="Projects">
+        <p>
+          I enjoy software development, engineering, robotics, and solving
+          problems that make me curious. A lot of my projects start as a
+          question or a slightly strange idea and turn into something I
+          can actually use.
+        </p>
 
-<div class="section-text">
+        <p>
+          I'm always learning something new, whether that's a programming
+          language, a technical system, or a completely different skill.
+        </p>
 
-<h3>Projects</h3>
+        <div class="tags">
+          <span>Software</span>
+          <span>Engineering</span>
+          <span>Robotics</span>
+          <span>Problem solving</span>
+        </div>
 
-<div class="projects-grid">
+      </div>
 
-<a href="https://typing-cat.michaelprokoudine.ca/" class="card">
-    <h4>Typing Cat</h4>
-    <p>
-        An online game for Chinese character recognition and typing practice.
-    </p>
-</a>
+    </div>
 
-<a href="https://github.com/michael-206/EmojiLang" class="card">
-    <h4>EmojiLang</h4>
-    <p>
-        A Turing-complete programming language built entirely around emojis.
-    </p>
-</a>
-
-</div>
-
-<div class="more-projects">
-    <p>
-        I've built many more software, engineering, robotics, and transit
-        projects over the years.
-    </p>
-
-    <a
-        href="https://github.com/michael-206?tab=repositories"
-        class="contact-button"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        View All Projects on GitHub →
-    </a>
-</div>
-</div>
-
-</section>
+  </section>
 
 
-<section id="contact" class="content-section">
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="section white">
 
-<div class="section-text">
+    <div class="section-grid">
 
-<h3>Contact</h3>
+      <div>
+        <span class="index">02</span>
+        <h2>Achievements &amp; Involvement</h2>
+      </div>
 
-<p>If you'd like to get in touch, feel free to email me.</p>
-<!-- Social Media Icon Set Made With NiftyButtons.com -->
-<div class="social-icons" style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-  <a href="https://www.instagram.com/michaelp8053/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 7px; background: linear-gradient(135deg, #764ba2 0%, #9333ea 100%); border-radius: 50%; color: #ffffff; text-decoration: none;" >
-    <svg class="niftybutton-instagram" data-donate="true" data-tag="ins" data-name="Instagram" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet" width="36px" height="36px" style="width: 36px; height: 36px; display: block; fill: #ffffff;"><title>Instagram social icon</title>
-    <path d="M256 109.3c47.8 0 53.4 0.2 72.3 1 17.4 0.8 26.9 3.7 33.2 6.2 8.4 3.2 14.3 7.1 20.6 13.4 6.3 6.3 10.1 12.2 13.4 20.6 2.5 6.3 5.4 15.8 6.2 33.2 0.9 18.9 1 24.5 1 72.3s-0.2 53.4-1 72.3c-0.8 17.4-3.7 26.9-6.2 33.2 -3.2 8.4-7.1 14.3-13.4 20.6 -6.3 6.3-12.2 10.1-20.6 13.4 -6.3 2.5-15.8 5.4-33.2 6.2 -18.9 0.9-24.5 1-72.3 1s-53.4-0.2-72.3-1c-17.4-0.8-26.9-3.7-33.2-6.2 -8.4-3.2-14.3-7.1-20.6-13.4 -6.3-6.3-10.1-12.2-13.4-20.6 -2.5-6.3-5.4-15.8-6.2-33.2 -0.9-18.9-1-24.5-1-72.3s0.2-53.4 1-72.3c0.8-17.4 3.7-26.9 6.2-33.2 3.2-8.4 7.1-14.3 13.4-20.6 6.3-6.3 12.2-10.1 20.6-13.4 6.3-2.5 15.8-5.4 33.2-6.2C202.6 109.5 208.2 109.3 256 109.3M256 77.1c-48.6 0-54.7 0.2-73.8 1.1 -19 0.9-32.1 3.9-43.4 8.3 -11.8 4.6-21.7 10.7-31.7 20.6 -9.9 9.9-16.1 19.9-20.6 31.7 -4.4 11.4-7.4 24.4-8.3 43.4 -0.9 19.1-1.1 25.2-1.1 73.8 0 48.6 0.2 54.7 1.1 73.8 0.9 19 3.9 32.1 8.3 43.4 4.6 11.8 10.7 21.7 20.6 31.7 9.9 9.9 19.9 16.1 31.7 20.6 11.4 4.4 24.4 7.4 43.4 8.3 19.1 0.9 25.2 1.1 73.8 1.1s54.7-0.2 73.8-1.1c19-0.9 32.1-3.9 43.4-8.3 11.8-4.6 21.7-10.7 31.7-20.6 9.9-9.9 16.1-19.9 20.6-31.7 4.4-11.4 7.4-24.4 8.3-43.4 0.9-19.1 1.1-25.2 1.1-73.8s-0.2-54.7-1.1-73.8c-0.9-19-3.9-32.1-8.3-43.4 -4.6-11.8-10.7-21.7-20.6-31.7 -9.9-9.9-19.9-16.1-31.7-20.6 -11.4-4.4-24.4-7.4-43.4-8.3C310.7 77.3 304.6 77.1 256 77.1L256 77.1z" fill="#ffffff"></path>
-    <path d="M256 164.1c-50.7 0-91.9 41.1-91.9 91.9s41.1 91.9 91.9 91.9 91.9-41.1 91.9-91.9S306.7 164.1 256 164.1zM256 315.6c-32.9 0-59.6-26.7-59.6-59.6s26.7-59.6 59.6-59.6 59.6 26.7 59.6 59.6S288.9 315.6 256 315.6z" fill="#ffffff"></path>
-    <circle cx="351.5" cy="160.5" r="21.5" fill="#ffffff"></circle>
-</svg>
-  </a>
-  <a href="https://www.linkedin.com/in/michael-prokoudine-b17304428/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 7px; background: linear-gradient(135deg, #764ba2 0%, #9333ea 100%); border-radius: 50%; color: #ffffff; text-decoration: none;" >
-    <svg class="niftybutton-linkedin" data-donate="true" data-tag="lin" data-name="LinkedIn" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet" width="36px" height="36px" style="width: 36px; height: 36px; display: block; fill: #ffffff;"><title>LinkedIn social icon</title>
-    <path d="M186.4 142.4c0 19-15.3 34.5-34.2 34.5 -18.9 0-34.2-15.4-34.2-34.5 0-19 15.3-34.5 34.2-34.5C171.1 107.9 186.4 123.4 186.4 142.4zM181.4 201.3h-57.8V388.1h57.8V201.3zM273.8 201.3h-55.4V388.1h55.4c0 0 0-69.3 0-98 0-26.3 12.1-41.9 35.2-41.9 21.3 0 31.5 15 31.5 41.9 0 26.9 0 98 0 98h57.5c0 0 0-68.2 0-118.3 0-50-28.3-74.2-68-74.2 -39.6 0-56.3 30.9-56.3 30.9v-25.2H273.8z" fill="#ffffff"></path>
-</svg>
-  </a>
-  <a href="https://github.com/michael-206?tab=repositories" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 7px; background: linear-gradient(135deg, #764ba2 0%, #9333ea 100%); border-radius: 50%; color: #ffffff; text-decoration: none;" >
-    <svg class="niftybutton-github" data-donate="true" data-tag="git" data-name="Github" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet" width="36px" height="36px" style="width: 36px; height: 36px; display: block; fill: #ffffff;"><title>Github social icon</title>
-    <path d="M256 70.7c-102.6 0-185.9 83.2-185.9 185.9 0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4 12.3-8.9V389.4c-51.7 11.3-62.5-21.9-62.5-21.9 -8.4-21.5-20.6-27.2-20.6-27.2 -16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.4 1.7-12 6.5-20.2 11.8-24.9 -41.3-4.7-84.7-20.6-84.7-91.9 0-20.3 7.3-36.9 19.2-49.9 -1.9-4.7-8.3-23.6 1.8-49.2 0 0 15.6-5 51.1 19.1 14.8-4.1 30.7-6.2 46.5-6.3 15.8 0.1 31.7 2.1 46.6 6.3 35.5-24 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9 0 71.4-43.5 87.1-84.9 91.7 6.7 5.8 12.8 17.1 12.8 34.4 0 24.9 0 44.9 0 51 0 4.9 3 10.7 12.4 8.9 73.8-24.6 127-94.3 127-176.4C441.9 153.9 358.6 70.7 256 70.7z" fill="#ffffff"></path>
-</svg>
-  </a>
-  <a href="mailto:promi@utschools.ca" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 7px; background: linear-gradient(135deg, #764ba2 0%, #9333ea 100%); border-radius: 50%; color: #ffffff; text-decoration: none;" >
-    <svg class="niftybutton-email" data-donate="true" data-tag="ema" data-name="Email" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet" width="36px" height="36px" style="width: 36px; height: 36px; display: block; fill: #ffffff;"><title>Email icon</title>
-    <path d="M101.3 141.6v228.9h0.3 308.4 0.8V141.6H101.3zM375.7 167.8l-119.7 91.5 -119.6-91.5H375.7zM127.6 194.1l64.1 49.1 -64.1 64.1V194.1zM127.8 344.2l84.9-84.9 43.2 33.1 43-32.9 84.7 84.7L127.8 344.2 127.8 344.2zM384.4 307.8l-64.4-64.4 64.4-49.3V307.8z" fill="#ffffff"></path>
-</svg>
-  </a>
-</div>
-<!--<a href="mailto:promi@utschools.ca" class="contact-button">
-Contact Me
-</a>-->
+      <div class="cards">
 
-</div>
+        <article>
+          <small>01</small>
 
-</section>
+          <h3>Triathlon</h3>
+
+          <p>
+            Completed my first triathlon at the Toronto Islands,
+            combining swimming, cycling, and running.
+          </p>
+        </article>
+
+
+        <article>
+          <small>02</small>
+
+          <h3>School &amp; extracurriculars</h3>
+
+          <p>
+            Stay involved outside the classroom while continuing to
+            build technical projects of my own.
+          </p>
+        </article>
+
+
+        <article>
+          <small>03</small>
+
+          <h3>Volunteering</h3>
+
+          <p>
+            Regularly volunteer and take part in activities in my
+            community.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+
+    <div class="section-grid project-head">
+
+      <div>
+        <span class="index">03</span>
+        <h2>Projects</h2>
+      </div>
+
+      <p class="note">
+        A few projects worth highlighting. My GitHub is the complete
+        archive, so this page can stay useful without needing constant
+        updates.
+      </p>
+
+    </div>
+
+
+    <div class="projects">
+
+      <!-- TYPING CAT -->
+      <article class="project featured">
+
+        <div class="project-image">
+
+          <img src="images/typing-cat.jpg" alt="Typing Cat">
+
+          <div class="ph">
+            <b>TYPING CAT</b>
+            <small>typing-cat.jpg</small>
+          </div>
+
+        </div>
+
+        <div class="project-body">
+
+          <small>Web app · Game</small>
+
+          <h3>Typing Cat</h3>
+
+          <p>
+            An online game for Chinese character recognition and
+            typing practice.
+          </p>
+
+          <a
+            href="https://typing-cat.michaelprokoudine.ca/"
+            target="_blank">
+            Visit project ↗
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- EMOJILANG -->
+      <article class="project">
+
+        <div class="project-image">
+
+          <img src="images/emojilang.jpg" alt="EmojiLang">
+
+          <div class="ph">
+            <b>EMOJILANG</b>
+            <small>emojilang.jpg</small>
+          </div>
+
+        </div>
+
+        <div class="project-body">
+
+          <small>Programming language</small>
+
+          <h3>EmojiLang</h3>
+
+          <p>
+            A programming language experiment built around emojis
+            as syntax.
+          </p>
+
+          <a
+            href="https://github.com/YOUR_USERNAME/EmojiLang"
+            target="_blank">
+            View on GitHub ↗
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- THIRD PROJECT -->
+      <article class="project">
+
+        <div class="project-image">
+
+          <img src="images/project-three.jpg" alt="Project">
+
+          <div class="ph">
+            <b>YOUR PROJECT</b>
+            <small>project-three.jpg</small>
+          </div>
+
+        </div>
+
+        <div class="project-body">
+
+          <small>Software · Engineering</small>
+
+          <h3>Another project</h3>
+
+          <p>
+            Swap this for another project that represents something
+            you've built.
+          </p>
+
+          <a
+            href="https://github.com/YOUR_USERNAME"
+            target="_blank">
+            View on GitHub ↗
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <div class="center">
+
+      <a
+        class="btn dark"
+        href="https://github.com/YOUR_USERNAME"
+        target="_blank">
+
+        View all projects on GitHub →
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="section white contact">
+
+    <div class="contact-inner">
+
+      <span class="label">04 / Contact</span>
+
+      <h2>Let's get in touch.</h2>
+
+      <p>
+        If you'd like to talk about a project, technology, or anything
+        else, feel free to reach out.
+      </p>
+
+
+      <div class="contact-grid">
+
+        <a href="mailto:YOUR_EMAIL@example.com">
+          <b>✉</b>
+          <span>Email</span>
+          <i>↗</i>
+        </a>
+
+        <a
+          href="https://github.com/YOUR_USERNAME"
+          target="_blank">
+          <b>⌘</b>
+          <span>GitHub</span>
+          <i>↗</i>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/YOUR_USERNAME/"
+          target="_blank">
+          <b>in</b>
+          <span>LinkedIn</span>
+          <i>↗</i>
+        </a>
+
+        <a
+          href="https://instagram.com/YOUR_USERNAME"
+          target="_blank">
+          <b>◎</b>
+          <span>Instagram</span>
+          <i>↗</i>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
 
 
 <footer>
-© 2026 Michael Prokoudine
+
+  <span>
+    © <span id="year"></span> Michael Prokoudine
+  </span>
+
+  <a href="#home">
+    Back to top ↑
+  </a>
+
 </footer>
-<script>
-  // Replace with your actual birth date
-  const birthDate = "2011-01-31"; // YYYY-MM-DD
 
-  function calculateAge(dateString) {
-      const today = new Date();
-      const birth = new Date(dateString);
-      let age = today.getFullYear() - birth.getFullYear();
-      const monthDiff = today.getMonth() - birth.getMonth();
-      const dayDiff = today.getDate() - birth.getDate();
-      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-          age--;
-      }
-      return age;
-  }
 
-  document.getElementById("age").textContent = calculateAge(birthDate);
-</script>
+<script src="script.js"></script>
+
 </body>
 </html>
-
-
-
-
-
